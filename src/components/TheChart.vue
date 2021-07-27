@@ -35,7 +35,7 @@ export default {
 
       const parameters = {
         levels: 3, // Number of inner circles to be drawn
-        areaOpacity: 0.85, // Opacity of the spider area
+        areaOpacity: 0.65, // Opacity of the spider area
         fontSize: "12px",
       };
 
@@ -130,7 +130,7 @@ export default {
         .attr("stroke", "lightgrey");
 
       const colors = (index) => {
-        const colors = ["CE8E38","4C81AF","34534C","CF8865","92B60A"]; // PHOTO
+        const colors = ["34534C","4C81AF", "CE8E38", "92B60A", "CF8865"]; // PHOTO
         return `#${colors[index % colors.length]}`;
       };
 

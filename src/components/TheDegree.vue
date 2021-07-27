@@ -51,18 +51,19 @@ export default {
           .style("top", "0")
           .style("left", "0")
           .style("z-index", "10")
-          .style("background-color", "white")
-        d3.select("#education-0")
-          .style("margin-top", `${chart.style("height")}`);
+          .style("background-color", "white");
+        d3.select("#education-0").style(
+          "margin-top",
+          `${chart.style("height")}`
+        );
       } else {
         chart
           .style("position", "relative")
           .style("top", "0")
           .style("left", "0")
           .style("z-index", "10")
-          .style("background-color", null)
-        d3.select("#education-0")
-          .style("margin-top", `0px`);
+          .style("background-color", null);
+        d3.select("#education-0").style("margin-top", `0px`);
       }
     },
     highlightEdu() {

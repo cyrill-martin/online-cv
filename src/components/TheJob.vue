@@ -5,7 +5,10 @@
     :id="`job-${index}`"
     @mouseover="highlightJob"
     @mouseout="highlightJob"
+    @touchstart="tryToHighlightJob"
+    @touchend="tryToHighlightJob"
   >
+  <!--  -->
     <div class="job-title">{{ job.title }}</div>
     <div class="job-company">
       <a :href="job.url" target="_blank">{{ job.company }}</a> · {{ job.type }}
@@ -80,6 +83,12 @@ export default {
           .style("background-color", null)
         d3.select("#job-0")
           .style("margin-top", `0px`);
+      }
+    },
+    tryToHighlightJob() {
+      if (window.innerWidth < this.mobileWidth) {
+
+        this.highlightJob();
       }
     },
     highlightJob() {
