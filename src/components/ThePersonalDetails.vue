@@ -59,7 +59,7 @@ img {
 
 .summary {
   font-size: 1.1rem;
-  margin: 3rem 0 2rem 0;
+  margin: 1rem 0;
 }
 
 .social-network + .social-network::before {
@@ -82,6 +82,7 @@ img {
 
   .summary {
     font-size: 1.3rem;
+    margin: 3rem 0 2rem 0;
   }
 
   .socials {
