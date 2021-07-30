@@ -81,10 +81,11 @@ export default {
   },
   provide() {
     return {
-      focusColor: "#F5F5F5",
+      focusColor: "rgb(245, 245, 245)",
       numberOfJobs: this.numberOfJobs,
       transitionDuration: 250,
       mobileWidth: 720, // Corresponding to global CSS
+      areaOpacity: "0.65"
     };
   },
   data() {

@@ -5,6 +5,7 @@
     :id="`education-${index}`"
     @mouseover="highlightEdu"
     @mouseout="highlightEdu"
+    @click="highlightEduMobile"
   >
     <div class="degree-institution">{{ degree.institution }}</div>
     <div class="degree-degree">{{ degree.degree }}</div>
@@ -25,7 +26,7 @@ import * as d3 from "d3";
 
 export default {
   props: ["degree", "index"],
-  inject: ["focusColor", "mobileWidth"],
+  inject: ["focusColor", "mobileWidth", "areaOpacity"],
   data() {
     return {
       hasFocus: false,
@@ -33,44 +34,53 @@ export default {
   },
   methods: {
     changeEduFocus() {
-      this.hasFocus = !this.hasFocus;
+      const hasFocus =
+        d3.select(`#education-${this.index}`).style("background-color") ===
+        this.focusColor;
+      hasFocus ? (this.hasFocus = false) : (this.hasFocus = true);
+      // this.hasFocus = !this.hasFocus;
     },
     changeAreaFocus() {
       if (this.hasFocus) {
-        d3.selectAll(".education-path").attr("fill-opacity", 0.1);
-        d3.select(`#educationArea-${this.index}`).attr("fill-opacity", 1.0);
+        d3.selectAll(".education-path").attr("fill-opacity", "0.1");
+        d3.select(`#educationArea-${this.index}`).attr("fill-opacity", "1");
       } else {
-        d3.selectAll(".education-path").attr("fill-opacity", 0.85);
-      }
-    },
-    positionChart() {
-      const chart = d3.select(`#education-chart`);
-      if (this.hasFocus) {
-        chart
-          .style("position", "fixed")
-          .style("top", "0")
-          .style("left", "0")
-          .style("z-index", "10")
-          .style("background-color", "white");
-        d3.select("#education-0").style(
-          "margin-top",
-          `${chart.style("height")}`
-        );
-      } else {
-        chart
-          .style("position", "relative")
-          .style("top", "0")
-          .style("left", "0")
-          .style("z-index", "10")
-          .style("background-color", null);
-        d3.select("#education-0").style("margin-top", `0px`);
+        d3.selectAll(".education-path").attr("fill-opacity", this.areaOpacity);
       }
     },
     highlightEdu() {
-      this.changeEduFocus();
-      this.changeAreaFocus();
+      if (window.innerWidth >= this.mobileWidth) {
+        this.changeEduFocus();
+        this.changeAreaFocus();
+      }
+    },
+    highlightEduMobile() {
       if (window.innerWidth < this.mobileWidth) {
-        this.positionChart();
+        // Scroll to corresponding section
+        document
+          .getElementById("sec-education")
+          .scrollIntoView();
+        this.changeEduFocus();
+        this.changeAreaFocus();
+        if (this.hasFocus) {
+          // Hide all item descriptions
+          d3.selectAll(`.education`)
+            .style("display", "none")
+            .style("background-color", "white");
+          // Show only currently selected item description
+          d3.select(`#education-${this.index}`)
+            .style("display", "block")
+            .style("background-color", this.focusColor);
+        } else {
+          // Show all item descriptions
+          d3.selectAll(`.education`)
+            .style("display", "block")
+            .style("background-color", "white");
+          // Scroll to corresponding section
+          document
+            .getElementById(`education-${this.index}`)
+            .scrollIntoView();
+        }
       }
     },
   },

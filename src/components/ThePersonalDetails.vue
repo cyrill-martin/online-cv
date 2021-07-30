@@ -74,4 +74,10 @@ img {
 .image-container {
   text-align: center;
 }
+
+@media only screen and (max-width: 45em) {
+  img {
+    max-width: 280px;
+  }
+}
 </style>

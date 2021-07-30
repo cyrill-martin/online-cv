@@ -1,5 +1,5 @@
 <template>
-  <div :id="`${type}-chart`"></div>
+  <div class="chart" :id="`${type}-chart`"></div>
 </template>
 
 <script>
@@ -8,7 +8,7 @@ import * as d3 from "d3";
 
 export default {
   props: ["chartData", "type"],
-  inject: ["focusColor", "transitionDuration", "mobileWidth"],
+  inject: ["focusColor", "transitionDuration", "mobileWidth", "areaOpacity"],
   mounted() {
     // Draw the box plots
     this.drawD3(this.chartData);
@@ -35,7 +35,7 @@ export default {
 
       const parameters = {
         levels: 3, // Number of inner circles to be drawn
-        areaOpacity: 0.65, // Opacity of the spider area
+        areaOpacity: this.areaOpacity, // Opacity of the spider area
         fontSize: "12px",
       };
 
@@ -130,7 +130,7 @@ export default {
         .attr("stroke", "lightgrey");
 
       const colors = (index) => {
-        const colors = ["34534C","4C81AF", "CE8E38", "92B60A", "CF8865"]; // PHOTO
+        const colors = ["34534C", "4C81AF", "CE8E38", "92B60A", "CF8865"]; // PHOTO
         return `#${colors[index % colors.length]}`;
       };
 
@@ -142,7 +142,7 @@ export default {
         .attr("class", "spider-area")
         .attr("opacity", parameters.areaOpacity);
 
-      // this is going to be occupied
+      // 'this' is going to be occupied
       const thisType = this.type;
       const thisFocusColor = this.focusColor;
       const thisDuration = this.transitionDuration;
@@ -165,50 +165,95 @@ export default {
         .attr("fill", (_, i) => colors(i))
         .attr("fill-opacity", parameters.areaOpacity)
         .on("mouseover", function(e) {
-          // "Hide" all spider areas
-          d3.selectAll(`.${thisType}-path`).attr("fill-opacity", 0.1);
-          // Highlight current area
-          d3.select(this).attr("fill-opacity", 1.0);
-          // Get index of current area
-          const id = d3
-            .select(e.currentTarget)
-            .attr("id")
-            .split("-")[1];
-          // Hide all job descriptions
-          d3.selectAll(`.${thisType}`).style("display", "none");
-          // Show and position currently corresponding job description next to spider chart
-          d3.select(`#${thisType}-${id}`)
-            .style("background-color", thisFocusColor)
-            .style("display", "block")
-            .style("margin-top", () => {
-              if (window.innerWidth >= thisMobileWidth) {
-                return `${getMarginTop(thisType, id)}px`;
-              } else {
-                return "0px";
-              }
-            });
-          // Scroll to corresponding section
-          let element = document.getElementById(`sec-${thisType}`);
-          if (window.innerWidth < thisMobileWidth) {
-            element = document.getElementById(`${thisType}-chart`);
+          if (window.innerWidth >= thisMobileWidth) {
+            // "Hide" all spider areas
+            d3.selectAll(`.${thisType}-path`).attr("fill-opacity", "0.1");
+            // Highlight current area
+            d3.select(this).attr("fill-opacity", "1");
+            // Get index of current area
+            const index = d3
+              .select(e.currentTarget)
+              .attr("id")
+              .split("-")[1];
+            // Hide all item descriptions
+            d3.selectAll(`.${thisType}`).style("display", "none");
+            // Show and position currently corresponding item description next to spider chart
+            d3.select(`#${thisType}-${index}`)
+              .style("background-color", thisFocusColor)
+              .style("display", "block")
+              .style("margin-top", () => {
+                if (window.innerWidth >= thisMobileWidth) {
+                  return `${getMarginTop(thisType, index)}px`;
+                } else {
+                  return "0px";
+                }
+              });
+            // Scroll to corresponding section
+            document
+              .getElementById(`sec-${thisType}`)
+              .scrollIntoView({ behavior: "smooth" });
           }
-          element.scrollIntoView({ behavior: "smooth" });
         })
         .on("mouseout", function(e) {
-          d3.selectAll(`.${thisType}-path`).attr(
-            "fill-opacity",
-            parameters.areaOpacity
-          );
-          const id = d3
-            .select(e.currentTarget)
-            .attr("id")
-            .split("-")[1];
-          d3.selectAll(`.${thisType}`).style("display", "block");
-          d3.select(`#${thisType}-${id}`)
-            .style("background-color", null)
-            .transition()
-            .duration(thisDuration)
-            .style("margin-top", "0px");
+          if (window.innerWidth >= thisMobileWidth) {
+            // Show all spider areas
+            d3.selectAll(`.${thisType}-path`).attr(
+              "fill-opacity",
+              parameters.areaOpacity
+            );
+            // Get index of current area
+            const index = d3
+              .select(e.currentTarget)
+              .attr("id")
+              .split("-")[1];
+            // Show all item descriptions
+            d3.selectAll(`.${thisType}`).style("display", "block");
+            // Set back margin-top
+            d3.select(`#${thisType}-${index}`)
+              .style("background-color", "white")
+              .transition()
+              .duration(thisDuration)
+              .style("margin-top", "0px");
+          }
+        })
+        .on("click", function(e) {
+          if (window.innerWidth < thisMobileWidth) {
+            // Check if already selected
+            const hasFocus = d3.select(this).attr("fill-opacity") === "1";
+
+            // Get index of current area
+            const index = d3
+              .select(e.currentTarget)
+              .attr("id")
+              .split("-")[1];
+
+            if (hasFocus) {
+              // When selected
+              // Show all spider areas
+              d3.selectAll(`.${thisType}-path`).attr(
+                "fill-opacity",
+                parameters.areaOpacity
+              );
+              // Hide all item descriptions
+              d3.selectAll(`.${thisType}`)
+                .style("display", "block")
+                .style("background-color", "white");
+            } else {
+              // When not selected
+              // "Hide" all spider areas
+              d3.selectAll(`.${thisType}-path`).attr("fill-opacity", "0.1");
+              // Highlight current area
+              d3.select(this).attr("fill-opacity", "1");
+              // Hide all item descriptions
+              d3.selectAll(`.${thisType}`)
+                .style("display", "none")
+                .style("background-color", "white");
+              // Show only currently selected item description
+              d3.selectAll(`#${thisType}-${index}`)
+                .style("display", "block")
+                .style("background-color", thisFocusColor);
+            }
+          }
         });
     },
   },

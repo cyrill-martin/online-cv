@@ -5,10 +5,9 @@
     :id="`job-${index}`"
     @mouseover="highlightJob"
     @mouseout="highlightJob"
-    @touchstart="tryToHighlightJob"
-    @touchend="tryToHighlightJob"
+    @click="highlightJobMobile"
   >
-  <!--  -->
+    <!--  -->
     <div class="job-title">{{ job.title }}</div>
     <div class="job-company">
       <a :href="job.url" target="_blank">{{ job.company }}</a> · {{ job.type }}
@@ -27,7 +26,13 @@ import * as d3 from "d3";
 
 export default {
   props: ["job", "index"],
-  inject: ["focusColor", "numberOfJobs", "transitionDuration", "mobileWidth"],
+  inject: [
+    "focusColor",
+    "numberOfJobs",
+    "transitionDuration",
+    "mobileWidth",
+    "areaOpacity",
+  ],
   data() {
     return {
       hasFocus: false,
@@ -35,14 +40,18 @@ export default {
   },
   methods: {
     changeJobFocus() {
-      this.hasFocus = !this.hasFocus;
+      const hasFocus =
+        d3.select(`#job-${this.index}`).style("background-color") ===
+        this.focusColor;
+      hasFocus ? (this.hasFocus = false) : (this.hasFocus = true);
+      // this.hasFocus = !this.hasFocus;
     },
     changeAreaFocus() {
       if (this.hasFocus) {
-        d3.selectAll(".job-path").attr("fill-opacity", 0.1);
-        d3.select(`#jobArea-${this.index}`).attr("fill-opacity", 1.0);
+        d3.selectAll(".job-path").attr("fill-opacity", "0.1");
+        d3.select(`#jobArea-${this.index}`).attr("fill-opacity", "1");
       } else {
-        d3.selectAll(".job-path").attr("fill-opacity", 0.85);
+        d3.selectAll(".job-path").attr("fill-opacity", this.areaOpacity);
       }
     },
     getMarginTop() {
@@ -63,41 +72,40 @@ export default {
         .duration(this.transitionDuration)
         .style("margin-top", `${this.getMarginTop()}px`);
     },
-    positionChart() {
-      const chart = d3.select(`#job-chart`);
-      if (this.hasFocus) {
-        chart
-          .style("position", "fixed")
-          .style("top", "0")
-          .style("left", "0")
-          .style("z-index", "10")
-          .style("background-color", "white")
-        d3.select("#job-0")
-          .style("margin-top", `${chart.style("height")}`);
-      } else {
-        chart
-          .style("position", "relative")
-          .style("top", "0")
-          .style("left", "0")
-          .style("z-index", "10")
-          .style("background-color", null)
-        d3.select("#job-0")
-          .style("margin-top", `0px`);
-      }
-    },
-    tryToHighlightJob() {
-      if (window.innerWidth < this.mobileWidth) {
-
-        this.highlightJob();
-      }
-    },
     highlightJob() {
-      this.changeJobFocus();
-      this.changeAreaFocus();
       if (window.innerWidth >= this.mobileWidth) {
+        this.changeJobFocus();
+        this.changeAreaFocus();
         this.setChartMargin();
-      } else {
-        this.positionChart();
+      }
+    },
+    highlightJobMobile() {
+      if (window.innerWidth < this.mobileWidth) {
+        // Scroll to corresponding section
+        document
+          .getElementById("sec-job")
+          .scrollIntoView();
+        this.changeJobFocus();
+        this.changeAreaFocus();
+        if (this.hasFocus) {
+          // Hide all item descriptions
+          d3.selectAll(`.job`)
+            .style("display", "none")
+            .style("background-color", "white");
+          // Show only currently selected item description
+          d3.select(`#job-${this.index}`)
+            .style("display", "block")
+            .style("background-color", this.focusColor);
+        } else {
+          // Show all item descriptions
+          d3.selectAll(`.job`)
+            .style("display", "block")
+            .style("background-color", "white");
+          // Scroll to corresponding section
+          document
+            .getElementById(`job-${this.index}`)
+            .scrollIntoView();
+        }
       }
     },
   },
