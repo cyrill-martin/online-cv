@@ -19,10 +19,3 @@ npm run build
 ```
 npm run lint
 ```
-
-### Deploy to GitHub Pages
-```
-./deploy.sh
-```
-#### Requirements
-- GitHub account with ssh key added
