@@ -54,11 +54,11 @@ export default {
 <style scoped>
 img {
   width: 100%;
-  max-width: 350px;
+  max-width: 280px;
 }
 
 .summary {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   margin: 3rem 0 2rem 0;
 }
 
@@ -67,7 +67,7 @@ img {
 }
 
 .socials {
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-bottom: 2rem;
 }
 
@@ -75,9 +75,18 @@ img {
   text-align: center;
 }
 
-@media only screen and (max-width: 45em) {
+@media only screen and (min-width: 45em) {
   img {
-    max-width: 280px;
+    max-width: 350px;
   }
+
+  .summary {
+    font-size: 1.3rem;
+  }
+
+  .socials {
+    font-size: 1.2rem;
+  }
+
 }
 </style>

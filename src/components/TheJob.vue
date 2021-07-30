@@ -114,7 +114,7 @@ export default {
 
 <style scoped>
 .job-title {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 700;
 }
 
@@ -128,5 +128,11 @@ export default {
 
 .job-summary {
   margin: 1rem 0;
+}
+
+@media only screen and (min-width: 45em) {
+  .job-title {
+    font-size: 1.2rem;
+  }
 }
 </style>

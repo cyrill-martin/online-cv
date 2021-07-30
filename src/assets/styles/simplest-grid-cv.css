@@ -34,12 +34,12 @@ a:hover {
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 2rem;
   margin-bottom: 0;
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   line-height: 0.5;
   margin-bottom: 0;
 }
@@ -101,6 +101,14 @@ h2::after {
 
 @media only screen and (min-width: 45em) {
   /* 720px */
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
 
   .col-1 {
     width: 8.33%;
