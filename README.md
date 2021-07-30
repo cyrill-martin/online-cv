@@ -20,10 +20,9 @@ npm run build
 npm run lint
 ```
 
-### Deploy
+### Deploy to GitHub Pages
 ```
 ./deploy.sh
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+#### Requirements
+- GitHub account with ssh key added
