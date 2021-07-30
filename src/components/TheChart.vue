@@ -36,7 +36,7 @@ export default {
       const parameters = {
         levels: 3, // Number of inner circles to be drawn
         areaOpacity: this.areaOpacity, // Opacity of the spider area
-        fontSize: "12px",
+        fontSize: "12",
       };
 
       parameters.circleRadius = dimensions.ctrWidth / 2;
@@ -108,11 +108,10 @@ export default {
         .attr("class", "x-tick-label")
         .style("font-size", parameters.fontSize)
         .each(function(d, i) {
-          const centroid = radarArc.centroid(d, i, 2.3);
+          const centroid = radarArc.centroid(d, i, 2.4);
           d3.select(this)
             .attr("x", centroid[0])
             .attr("y", centroid[1])
-            .attr("dy", "0.33em")
             .text((d) => d)
             .attr("fill", "#333447");
         })

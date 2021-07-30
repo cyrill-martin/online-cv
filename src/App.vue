@@ -85,7 +85,7 @@ export default {
       numberOfJobs: this.numberOfJobs,
       transitionDuration: 250,
       mobileWidth: 720, // Corresponding to global CSS
-      areaOpacity: "0.65"
+      areaOpacity: "0.65",
     };
   },
   data() {
