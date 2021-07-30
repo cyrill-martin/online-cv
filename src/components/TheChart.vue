@@ -130,7 +130,8 @@ export default {
         .attr("stroke", "lightgrey");
 
       const colors = (index) => {
-        const colors = ["34534C", "4C81AF", "CE8E38", "92B60A", "CF8865"]; // PHOTO
+        // const colors = ["34534C", "4C81AF", "CE8E38", "92B60A", "CF8865"]; // PHOTO
+           const colors = ["58ABC9", "EC6A93", "F2EB0B", "EF8A61", "8BC63F"]; // kmapper k
         return `#${colors[index % colors.length]}`;
       };
 
