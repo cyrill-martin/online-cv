@@ -67,7 +67,7 @@ img {
 }
 
 .socials {
-  font-size: 1rem;
+  font-size: 1.1rem;
   margin-bottom: 2rem;
 }
 
