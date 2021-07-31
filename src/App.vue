@@ -43,7 +43,7 @@
 
     <footer class="row">
       <div class="col-12">
-        &#169; 2021 Cyrill Martin - Made with Vue.js (files available <a href="https://github.com/cyrill-martin/online-cv" target="_blank">here</a>)
+        &#169; 2021 Cyrill Martin - Vue.js files available <a href="https://github.com/cyrill-martin/online-cv" target="_blank">here</a>
       </div>
     </footer>
   </div>
