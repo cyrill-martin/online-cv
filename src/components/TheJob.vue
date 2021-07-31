@@ -32,12 +32,18 @@ export default {
     "mobileWidth",
     "areaOpacity",
   ],
+  created() {
+    window.addEventListener("resize", this.clearFocus);
+  },
   data() {
     return {
       hasFocus: false,
     };
   },
   methods: {
+    clearFocus() {
+      this.hasFocus = false;
+    },
     changeJobFocus() {
       const hasFocus =
         d3.select(`#job-${this.index}`).style("background-color") ===

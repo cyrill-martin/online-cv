@@ -94,11 +94,14 @@ export default {
   methods: {
     resetSelections() {
     // Show all item descriptions
-    d3.selectAll(".life-station")
+    d3.selectAll(".job")
       .style("display", "block")
       .style("background-color", "white");
     d3.selectAll(".job-path")
       .attr("fill-opacity", this.areaOpacity);
+    d3.selectAll(".education")
+      .style("display", "block")
+      .style("background-color", "white");
     d3.selectAll(".education-path")
       .attr("fill-opacity", this.areaOpacity);
   }

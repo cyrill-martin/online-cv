@@ -26,12 +26,18 @@ import d3 from "../d3-importer.js";
 export default {
   props: ["degree", "index"],
   inject: ["focusColor", "mobileWidth", "areaOpacity"],
+  created() {
+    window.addEventListener("resize", this.clearFocus);
+  },
   data() {
     return {
       hasFocus: false,
     };
   },
   methods: {
+    clearFocus() {
+      this.hasFocus = false;
+    },
     changeEduFocus() {
       const hasFocus =
         d3.select(`#education-${this.index}`).style("background-color") ===
