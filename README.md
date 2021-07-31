@@ -1,5 +1,11 @@
 # online-cv
 
+These are the Vue.js files for the online CV accessible at [cyrill-martin.github.io](https://cyrill-martin.github.io).
+
+The CV content is based on the "cv" data property in ``./src/App.vue``. 
+
+The spider charts are based on the D3.js code written in the "drawD3()" method in ``./src/components/TheChart.vue``.
+
 ## Project setup
 ```
 npm install
@@ -19,3 +25,6 @@ npm run build
 ```
 npm run lint
 ```
+## License
+
+MIT
