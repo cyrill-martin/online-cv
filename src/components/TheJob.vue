@@ -87,9 +87,7 @@ export default {
     highlightJobMobile() {
       if (window.innerWidth < this.mobileWidth) {
         // Scroll to corresponding section
-        document
-          .getElementById("sec-job")
-          .scrollIntoView();
+        document.getElementById("sec-job").scrollIntoView();
         this.changeJobFocus();
         this.changeAreaFocus();
         if (this.hasFocus) {
@@ -107,9 +105,7 @@ export default {
             .style("display", "block")
             .style("background-color", "white");
           // Scroll to corresponding section
-          document
-            .getElementById(`job-${this.index}`)
-            .scrollIntoView();
+          document.getElementById(`job-${this.index}`).scrollIntoView();
         }
       }
     },

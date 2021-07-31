@@ -93,18 +93,16 @@ export default {
   },
   methods: {
     resetSelections() {
-    // Show all item descriptions
-    d3.selectAll(".job")
-      .style("display", "block")
-      .style("background-color", "white");
-    d3.selectAll(".job-path")
-      .attr("fill-opacity", this.areaOpacity);
-    d3.selectAll(".education")
-      .style("display", "block")
-      .style("background-color", "white");
-    d3.selectAll(".education-path")
-      .attr("fill-opacity", this.areaOpacity);
-  }
+      // Show all item descriptions
+      d3.selectAll(".job")
+        .style("display", "block")
+        .style("background-color", "white");
+      d3.selectAll(".job-path").attr("fill-opacity", this.areaOpacity);
+      d3.selectAll(".education")
+        .style("display", "block")
+        .style("background-color", "white");
+      d3.selectAll(".education-path").attr("fill-opacity", this.areaOpacity);
+    },
   },
   data() {
     return {
@@ -235,8 +233,7 @@ export default {
               url: "https://www.karger.com/",
               type: "Permanent",
               period: { from: "Oct 2015", to: "Jul 2018" },
-              summary:
-                `Improved production and distribution workflows for bibliographic, 
+              summary: `Improved production and distribution workflows for bibliographic, 
                 content, and metadata standards · Managed a team of four staff 
                 members, recruited three positions · Enhanced data quality and 
                 integrity using external data sources · 
@@ -250,8 +247,7 @@ export default {
               url: "https://www.karger.com/",
               type: "Permanent",
               period: { from: "Feb 2013", to: "Sep 2015" },
-              summary:
-                `Led workflow and data conversion from Karger's 
+              summary: `Led workflow and data conversion from Karger's 
                 own SGML standard to the Journal Article Tag 
                 Suite (JATS) XML · Streamlined development and 
                 maintenance of all content and metadata standards 
@@ -265,8 +261,7 @@ export default {
               url: "https://www.karger.com/",
               type: "Permanent",
               period: { from: "Feb 2012", to: "Jan 2013" },
-              summary:
-                `Arranged scientific articles to ensure readability, 
+              summary: `Arranged scientific articles to ensure readability, 
                 correctness, and consistency of content 
                 (text, figures, tables), grammar, 
                 spelling, and punctuation`,
@@ -279,8 +274,7 @@ export default {
               url: "http://symac.ch/",
               type: "Permanent",
               period: { from: "Mar 2010", to: "Feb 2012" },
-              summary:
-                `Conducted requirements engineering and project 
+              summary: `Conducted requirements engineering and project 
                 documentation for bi-temporal database application · 
                 Initiated graphical user interface (GUI) prototypes · 
                 Organized automated GUI tests · Developed and performed 
@@ -294,8 +288,7 @@ export default {
               url: "https://www.unibas.ch/",
               type: "Contract",
               period: { from: "Apr 2009", to: "Sep 2009" },
-              summary:
-                `Planned field work for soil sciences part in 
+              summary: `Planned field work for soil sciences part in 
                 interdisciplinary SNF project · Wrote paper 
                 based on Master's thesis results 
                 (DOI: 10.1016/j.baae.2010.04.006)`,
