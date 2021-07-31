@@ -3,8 +3,7 @@
 </template>
 
 <script>
-// import d3 from "./d3-importer.js";
-import * as d3 from "d3";
+import d3 from "../d3-importer.js";
 
 export default {
   props: ["chartData", "type"],

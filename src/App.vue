@@ -55,9 +55,9 @@ import TheDigital from "./components/TheDigital.vue";
 import TheLanguages from "./components/TheLanguages.vue";
 import ThePublications from "./components/ThePublications.vue";
 import TheInterests from "./components/TheInterests.vue";
+import d3 from "./d3-importer.js";
 
 export default {
-  name: "App",
   components: {
     ThePersonalDetails,
     TheExperience,
@@ -66,6 +66,9 @@ export default {
     TheLanguages,
     ThePublications,
     TheInterests,
+  },
+  created() {
+    window.addEventListener("resize", this.resetSelections);
   },
   computed: {
     fullName() {
@@ -81,15 +84,31 @@ export default {
   },
   provide() {
     return {
-      focusColor: "rgb(245, 245, 245)",
+      focusColor: this.focusColor,
       numberOfJobs: this.numberOfJobs,
-      transitionDuration: 250,
-      mobileWidth: 720, // Corresponding to global CSS
-      areaOpacity: "0.65",
+      transitionDuration: this.transitionDuration,
+      mobileWidth: this.mobileWidth, // Corresponding to global CSS
+      areaOpacity: this.areaOpacity,
     };
+  },
+  methods: {
+    resetSelections() {
+    // Show all item descriptions
+    d3.selectAll(".life-station")
+      .style("display", "block")
+      .style("background-color", "white");
+    d3.selectAll(".job-path")
+      .attr("fill-opacity", this.areaOpacity);
+    d3.selectAll(".education-path")
+      .attr("fill-opacity", this.areaOpacity);
+  }
   },
   data() {
     return {
+      focusColor: "rgb(245, 245, 245)",
+      transitionDuration: 250,
+      mobileWidth: 720, // Corresponding to global CSS
+      areaOpacity: "0.65",
       cv: {
         firstName: "Cyrill",
         lastName: "Martin",

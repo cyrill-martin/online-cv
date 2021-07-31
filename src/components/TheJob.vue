@@ -21,8 +21,7 @@
 </template>
 
 <script>
-// import d3 from "./d3-importer.js";
-import * as d3 from "d3";
+import d3 from "../d3-importer.js";
 
 export default {
   props: ["job", "index"],
@@ -89,7 +88,7 @@ export default {
         this.changeAreaFocus();
         if (this.hasFocus) {
           // Hide all item descriptions
-          d3.selectAll(`.job`)
+          d3.selectAll(".job")
             .style("display", "none")
             .style("background-color", "white");
           // Show only currently selected item description
@@ -98,7 +97,7 @@ export default {
             .style("background-color", this.focusColor);
         } else {
           // Show all item descriptions
-          d3.selectAll(`.job`)
+          d3.selectAll(".job")
             .style("display", "block")
             .style("background-color", "white");
           // Scroll to corresponding section

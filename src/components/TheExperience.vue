@@ -20,8 +20,7 @@
 </template>
 
 <script>
-// import d3 from "./d3-importer.js";
-import * as d3 from "d3";
+import d3 from "../d3-importer.js";
 import TheJob from "./TheJob.vue";
 import TheChart from "./TheChart.vue";
 

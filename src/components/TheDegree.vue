@@ -21,8 +21,7 @@
 </template>
 
 <script>
-// import d3 from "./d3-importer.js";
-import * as d3 from "d3";
+import d3 from "../d3-importer.js";
 
 export default {
   props: ["degree", "index"],
@@ -73,7 +72,7 @@ export default {
             .style("background-color", this.focusColor);
         } else {
           // Show all item descriptions
-          d3.selectAll(`.education`)
+          d3.selectAll(".education")
             .style("display", "block")
             .style("background-color", "white");
           // Scroll to corresponding section
