@@ -7,7 +7,7 @@ import d3 from "../d3-importer.js";
 
 export default {
   props: ["chartData", "type"],
-  inject: ["focusColor", "transitionDuration", "mobileWidth", "areaOpacity"],
+  inject: ["focusColor", "transitionDuration", "mobileWidth", "areaOpacity", "scrollToId"],
   mounted() {
     // Draw the box plots
     this.drawD3(this.chartData);
@@ -151,6 +151,7 @@ export default {
         const chart = document.getElementById(`${type}-chart`);
         return chart.offsetHeight / 2 - item.offsetHeight / 2;
       };
+      const thisScrollToId = this.scrollToId;
 
       // Create the spider areas
       spiderAreas
@@ -188,10 +189,7 @@ export default {
                 }
               });
             // Scroll to corresponding section
-            location.href = `#sec-${thisType}`;
-            // document
-            //   .getElementById(`sec-${thisType}`)
-            //   .scrollIntoView({ behavior: "smooth" });
+            thisScrollToId(`#sec-${thisType}`);
           }
         })
         .on("mouseout", function(e) {

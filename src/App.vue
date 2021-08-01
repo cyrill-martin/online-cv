@@ -43,7 +43,10 @@
 
     <footer class="row">
       <div class="col-12">
-        &#169; 2021 Cyrill Martin - Vue.js files available <a href="https://github.com/cyrill-martin/online-cv" target="_blank">here</a>
+        &#169; 2021 Cyrill Martin - Vue.js files available
+        <a href="https://github.com/cyrill-martin/online-cv" target="_blank"
+          >here</a
+        >
       </div>
     </footer>
   </div>
@@ -91,9 +94,19 @@ export default {
       transitionDuration: this.transitionDuration,
       mobileWidth: this.mobileWidth, // Corresponding to global CSS
       areaOpacity: this.areaOpacity,
+      scrollToId: this.scrollToId,
     };
   },
   methods: {
+    scrollToId(id) {
+      location.href = id;
+      // Clean up URL
+      window.history.replaceState(
+        { additionalInformation: "Updated the URL with JS" },
+        "Cyrill Martin | Curriculum Vitae",
+        this.url
+      );
+    },
     resetSelections() {
       // Show all item descriptions
       d3.selectAll(".job")
@@ -108,6 +121,7 @@ export default {
   },
   data() {
     return {
+      url: process.env.VUE_APP_URL,
       focusColor: "rgb(245, 245, 245)",
       transitionDuration: 250,
       mobileWidth: 720, // Corresponding to global CSS

@@ -31,6 +31,7 @@ export default {
     "transitionDuration",
     "mobileWidth",
     "areaOpacity",
+    "scrollToId",
   ],
   created() {
     window.addEventListener("resize", this.clearFocus);
@@ -87,7 +88,7 @@ export default {
     highlightJobMobile() {
       if (window.innerWidth < this.mobileWidth) {
         // Scroll to corresponding section
-        location.href = "#job-chart";
+        this.scrollToId("#job-chart");
         // document.getElementById("job-chart").scrollIntoView();
         // Set focus
         this.changeJobFocus();
@@ -107,7 +108,7 @@ export default {
           d3.selectAll(".job")
             .style("display", "block")
             .style("background-color", "white");
-          location.href = `#job-${this.index}`;
+          this.scrollToId(`#job-${this.index}`);
           window.scrollBy(
             0,
             -(parseInt(document.getElementById("job-chart").offsetHeight) + 10)
