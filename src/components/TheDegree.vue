@@ -25,7 +25,7 @@ import d3 from "../d3-importer.js";
 
 export default {
   props: ["degree", "index"],
-  inject: ["focusColor", "mobileWidth", "areaOpacity"],
+  inject: ["focusColor", "mobileWidth", "areaOpacity", "transitionDuration"],
   created() {
     window.addEventListener("resize", this.clearFocus);
   },
@@ -62,9 +62,10 @@ export default {
     highlightEduMobile() {
       if (window.innerWidth < this.mobileWidth) {
         // Scroll to corresponding section
-        document
-          .getElementById("sec-education")
-          .scrollIntoView();
+        location.href = "#education-chart";
+        // document
+        //   .getElementById("education-chart")
+        //   .scrollIntoView();
         this.changeEduFocus();
         this.changeAreaFocus();
         if (this.hasFocus) {
@@ -82,9 +83,11 @@ export default {
             .style("display", "block")
             .style("background-color", "white");
           // Scroll to corresponding section
-          document
-            .getElementById(`education-${this.index}`)
-            .scrollIntoView();
+          location.href = `#education-${this.index}`;
+          window.scrollBy(
+            0,
+            -(parseInt(document.getElementById("education-chart").offsetHeight) + 10)
+          );
         }
       }
     },

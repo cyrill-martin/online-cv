@@ -87,8 +87,11 @@ export default {
     highlightJobMobile() {
       if (window.innerWidth < this.mobileWidth) {
         // Scroll to corresponding section
-        document.getElementById("sec-job").scrollIntoView();
+        location.href = "#job-chart";
+        // document.getElementById("job-chart").scrollIntoView();
+        // Set focus
         this.changeJobFocus();
+        // Set spider area
         this.changeAreaFocus();
         if (this.hasFocus) {
           // Hide all item descriptions
@@ -104,8 +107,11 @@ export default {
           d3.selectAll(".job")
             .style("display", "block")
             .style("background-color", "white");
-          // Scroll to corresponding section
-          document.getElementById(`job-${this.index}`).scrollIntoView();
+          location.href = `#job-${this.index}`;
+          window.scrollBy(
+            0,
+            -(parseInt(document.getElementById("job-chart").offsetHeight) + 10)
+          );
         }
       }
     },

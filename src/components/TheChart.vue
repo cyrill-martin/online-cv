@@ -188,9 +188,10 @@ export default {
                 }
               });
             // Scroll to corresponding section
-            document
-              .getElementById(`sec-${thisType}`)
-              .scrollIntoView({ behavior: "smooth" });
+            location.href = `#sec-${thisType}`;
+            // document
+            //   .getElementById(`sec-${thisType}`)
+            //   .scrollIntoView({ behavior: "smooth" });
           }
         })
         .on("mouseout", function(e) {
