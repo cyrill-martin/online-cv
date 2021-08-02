@@ -6,7 +6,11 @@
   </div>
   <div class="row">
     <div class="col-6">
-      <the-chart :chart-data="education" :type="'education'"></the-chart>
+      <the-chart
+        :chart-data="education"
+        :type="'education'"
+        @set-focus="setFocus"
+      ></the-chart>
     </div>
     <div class="col-6">
       <the-degree
@@ -14,6 +18,8 @@
         :key="index"
         :degree="degree"
         :index="index"
+        :focusedIndex="focusedIndex"
+        @set-focus="setFocus"
       ></the-degree>
     </div>
   </div>
@@ -29,5 +35,15 @@ export default {
     TheChart,
   },
   props: ["education"],
+  data() {
+    return {
+      focusedIndex: null,
+    };
+  },
+  methods: {
+    setFocus(index) {
+      this.focusedIndex = index;
+    },
+  },
 };
 </script>

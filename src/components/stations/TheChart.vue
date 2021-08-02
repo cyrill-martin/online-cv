@@ -3,16 +3,25 @@
 </template>
 
 <script>
-import d3 from "../d3-importer.js";
+import d3 from "../../d3-importer.js";
 
 export default {
   props: ["chartData", "type"],
-  inject: ["focusColor", "transitionDuration", "mobileWidth", "areaOpacity", "scrollToId"],
+  inject: [
+    "focusColor",
+    "transitionDuration",
+    "mobileWidth",
+    "areaOpacity",
+    "scrollToId",
+  ],
   mounted() {
     // Draw the box plots
     this.drawD3(this.chartData);
   },
   methods: {
+    emitFocusedIndex(index) {
+      this.$emit("setFocus", index);
+    },
     drawD3(chartData) {
       // Set dimensions and other parameters
       let dimensions = {
@@ -143,7 +152,7 @@ export default {
 
       // 'this' is going to be occupied
       const thisType = this.type;
-      const thisFocusColor = this.focusColor;
+      // const thisFocusColor = this.focusColor;
       const thisDuration = this.transitionDuration;
       const thisMobileWidth = this.mobileWidth;
       const getMarginTop = (type, index) => {
@@ -152,6 +161,7 @@ export default {
         return chart.offsetHeight / 2 - item.offsetHeight / 2;
       };
       const thisScrollToId = this.scrollToId;
+      const thisEmitFocusedIndex = this.emitFocusedIndex;
 
       // Create the spider areas
       spiderAreas
@@ -164,7 +174,7 @@ export default {
         .attr("stroke", "none")
         .attr("fill", (_, i) => colors(i))
         .attr("fill-opacity", parameters.areaOpacity)
-        .on("mouseover", function(e) {
+        .on("mouseover", function() {
           if (window.innerWidth >= thisMobileWidth) {
             // "Hide" all spider areas
             d3.selectAll(`.${thisType}-path`).attr("fill-opacity", "0.1");
@@ -172,14 +182,17 @@ export default {
             d3.select(this).attr("fill-opacity", "1");
             // Get index of current area
             const index = d3
-              .select(e.currentTarget)
+              .select(this)
               .attr("id")
               .split("-")[1];
             // Hide all item descriptions
             d3.selectAll(`.${thisType}`).style("display", "none");
+
+            // Emit focused index
+            thisEmitFocusedIndex(parseInt(index));
+
             // Show and position currently corresponding item description next to spider chart
             d3.select(`#${thisType}-${index}`)
-              .style("background-color", thisFocusColor)
               .style("display", "block")
               .style("margin-top", () => {
                 if (window.innerWidth >= thisMobileWidth) {
@@ -192,7 +205,7 @@ export default {
             thisScrollToId(`#sec-${thisType}`);
           }
         })
-        .on("mouseout", function(e) {
+        .on("mouseout", function() {
           if (window.innerWidth >= thisMobileWidth) {
             // Show all spider areas
             d3.selectAll(`.${thisType}-path`).attr(
@@ -201,14 +214,17 @@ export default {
             );
             // Get index of current area
             const index = d3
-              .select(e.currentTarget)
+              .select(this)
               .attr("id")
               .split("-")[1];
             // Show all item descriptions
             d3.selectAll(`.${thisType}`).style("display", "block");
+
+            // Emit focused index
+            thisEmitFocusedIndex(null);
+
             // Set back margin-top
             d3.select(`#${thisType}-${index}`)
-              .style("background-color", "white")
               .transition()
               .duration(thisDuration)
               .style("margin-top", "0px");
@@ -232,24 +248,25 @@ export default {
                 "fill-opacity",
                 parameters.areaOpacity
               );
-              // Hide all item descriptions
-              d3.selectAll(`.${thisType}`)
-                .style("display", "block")
-                .style("background-color", "white");
+              // Show all item descriptions
+              d3.selectAll(`.${thisType}`).style("display", "block");
+
+              // Emit focused index
+              thisEmitFocusedIndex(null);
             } else {
               // When not selected
               // "Hide" all spider areas
               d3.selectAll(`.${thisType}-path`).attr("fill-opacity", "0.1");
               // Highlight current area
               d3.select(this).attr("fill-opacity", "1");
+
+              // Emit focused index
+              thisEmitFocusedIndex(parseInt(index));
+
               // Hide all item descriptions
-              d3.selectAll(`.${thisType}`)
-                .style("display", "none")
-                .style("background-color", "white");
+              d3.selectAll(`.${thisType}`).style("display", "none");
               // Show only currently selected item description
-              d3.selectAll(`#${thisType}-${index}`)
-                .style("display", "block")
-                .style("background-color", thisFocusColor);
+              d3.selectAll(`#${thisType}-${index}`).style("display", "block");
             }
           }
         });

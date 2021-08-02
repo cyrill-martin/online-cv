@@ -6,7 +6,11 @@
   </div>
   <div class="row" @mouseout="resetChartMargin">
     <div class="col-6">
-      <the-chart :chart-data="experience" :type="'job'"></the-chart>
+      <the-chart
+        :chart-data="experience"
+        :type="'job'"
+        @set-focus="setFocus"
+      ></the-chart>
     </div>
     <div class="col-6">
       <the-job
@@ -14,13 +18,15 @@
         :key="job.title"
         :job="job"
         :index="index"
+        :focusedIndex="focusedIndex"
+        @set-focus="setFocus"
       ></the-job>
     </div>
   </div>
 </template>
 
 <script>
-import d3 from "../d3-importer.js";
+import d3 from "../../d3-importer.js";
 import TheJob from "./TheJob.vue";
 import TheChart from "./TheChart.vue";
 
@@ -31,7 +37,15 @@ export default {
   },
   props: ["experience"],
   inject: ["transitionDuration"],
+  data() {
+    return {
+      focusedIndex: null,
+    };
+  },
   methods: {
+    setFocus(index) {
+      this.focusedIndex = index;
+    },
     resetChartMargin() {
       d3.select(`#job-chart`)
         .transition()

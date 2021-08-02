@@ -7,7 +7,6 @@
     @mouseout="highlightJob"
     @click="highlightJobMobile"
   >
-    <!--  -->
     <div class="job-title">{{ job.title }}</div>
     <div class="job-company">
       <a :href="job.url" target="_blank">{{ job.company }}</a> · {{ job.type }}
@@ -21,10 +20,11 @@
 </template>
 
 <script>
-import d3 from "../d3-importer.js";
+import d3 from "../../d3-importer.js";
 
 export default {
-  props: ["job", "index"],
+  emits: ["setFocus"],
+  props: ["job", "index", "focusedIndex"],
   inject: [
     "focusColor",
     "numberOfJobs",
@@ -41,16 +41,22 @@ export default {
       hasFocus: false,
     };
   },
+  watch: {
+    focusedIndex(value) {
+      if (value === this.index) {
+        this.hasFocus = true;
+      } else {
+        this.hasFocus = false;
+      }
+    },
+  },
   methods: {
     clearFocus() {
       this.hasFocus = false;
     },
     changeJobFocus() {
-      const hasFocus =
-        d3.select(`#job-${this.index}`).style("background-color") ===
-        this.focusColor;
-      hasFocus ? (this.hasFocus = false) : (this.hasFocus = true);
-      // this.hasFocus = !this.hasFocus;
+      this.hasFocus = !this.hasFocus;
+      this.$emit("setFocus", this.index);
     },
     changeAreaFocus() {
       if (this.hasFocus) {
@@ -96,18 +102,12 @@ export default {
         this.changeAreaFocus();
         if (this.hasFocus) {
           // Hide all item descriptions
-          d3.selectAll(".job")
-            .style("display", "none")
-            .style("background-color", "white");
+          d3.selectAll(".job").style("display", "none");
           // Show only currently selected item description
-          d3.select(`#job-${this.index}`)
-            .style("display", "block")
-            .style("background-color", this.focusColor);
+          d3.select(`#job-${this.index}`).style("display", "block");
         } else {
           // Show all item descriptions
-          d3.selectAll(".job")
-            .style("display", "block")
-            .style("background-color", "white");
+          d3.selectAll(".job").style("display", "block");
           this.scrollToId(`#job-${this.index}`);
           window.scrollBy(
             0,

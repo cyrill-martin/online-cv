@@ -54,8 +54,8 @@
 
 <script>
 import ThePersonalDetails from "./components/ThePersonalDetails.vue";
-import TheExperience from "./components/TheExperience.vue";
-import TheEducation from "./components/TheEducation.vue";
+import TheExperience from "./components/stations/TheExperience.vue";
+import TheEducation from "./components/stations/TheEducation.vue";
 import TheDigital from "./components/TheDigital.vue";
 import TheLanguages from "./components/TheLanguages.vue";
 import ThePublications from "./components/ThePublications.vue";
@@ -109,13 +109,9 @@ export default {
     },
     resetSelections() {
       // Show all item descriptions
-      d3.selectAll(".job")
-        .style("display", "block")
-        .style("background-color", "white");
+      d3.selectAll(".job").style("display", "block");
       d3.selectAll(".job-path").attr("fill-opacity", this.areaOpacity);
-      d3.selectAll(".education")
-        .style("display", "block")
-        .style("background-color", "white");
+      d3.selectAll(".education").style("display", "block");
       d3.selectAll(".education-path").attr("fill-opacity", this.areaOpacity);
     },
   },
