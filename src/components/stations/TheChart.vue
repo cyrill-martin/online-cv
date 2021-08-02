@@ -230,44 +230,53 @@ export default {
               .style("margin-top", "0px");
           }
         })
-        .on("click", function(e) {
-          if (window.innerWidth < thisMobileWidth) {
-            // Check if already selected
-            const hasFocus = d3.select(this).attr("fill-opacity") === "1";
+        .on("click", function() {
+          d3.select(`#${thisType}-chart`).style("margin-top", "0px");
+          // Check if already selected
+          const hasFocus = d3.select(this).attr("fill-opacity") === "1";
 
-            // Get index of current area
-            const index = d3
-              .select(e.currentTarget)
-              .attr("id")
-              .split("-")[1];
+          // Get index of current area
+          const index = d3
+            .select(this)
+            .attr("id")
+            .split("-")[1];
 
-            if (hasFocus) {
-              // When selected
-              // Show all spider areas
-              d3.selectAll(`.${thisType}-path`).attr(
-                "fill-opacity",
-                parameters.areaOpacity
-              );
-              // Show all item descriptions
-              d3.selectAll(`.${thisType}`).style("display", "block");
+          if (hasFocus) {
+            // When selected
+            // Show all spider areas
+            d3.selectAll(`.${thisType}-path`).attr(
+              "fill-opacity",
+              parameters.areaOpacity
+            );
+            // Show all item descriptions
+            d3.selectAll(`.${thisType}`)
+              .style("display", "block")
+              .style("margin-top", "0px");
 
-              // Emit focused index
-              thisEmitFocusedIndex(null);
-            } else {
-              // When not selected
-              // "Hide" all spider areas
-              d3.selectAll(`.${thisType}-path`).attr("fill-opacity", "0.1");
-              // Highlight current area
-              d3.select(this).attr("fill-opacity", "1");
+            // Emit focused index
+            thisEmitFocusedIndex(null);
+          } else {
+            // When not selected
+            // "Hide" all spider areas
+            d3.selectAll(`.${thisType}-path`).attr("fill-opacity", "0.1");
+            // Highlight current area
+            d3.select(this).attr("fill-opacity", "1");
 
-              // Emit focused index
-              thisEmitFocusedIndex(parseInt(index));
+            // Emit focused index
+            thisEmitFocusedIndex(parseInt(index));
 
-              // Hide all item descriptions
-              d3.selectAll(`.${thisType}`).style("display", "none");
-              // Show only currently selected item description
-              d3.selectAll(`#${thisType}-${index}`).style("display", "block");
-            }
+            // Hide all item descriptions
+            d3.selectAll(`.${thisType}`).style("display", "none");
+            // Show only currently selected item description
+            d3.select(`#${thisType}-${index}`)
+              .style("display", "block")
+              .style("margin-top", () => {
+                if (window.innerWidth < thisMobileWidth) {
+                  return "0px";
+                } else {
+                  return `${getMarginTop(thisType, index)}px`;
+                }
+              });
           }
         });
     },

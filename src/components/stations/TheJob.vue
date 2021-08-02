@@ -95,7 +95,6 @@ export default {
       if (window.innerWidth < this.mobileWidth) {
         // Scroll to corresponding section
         this.scrollToId("#job-chart");
-        // document.getElementById("job-chart").scrollIntoView();
         // Set focus
         this.changeJobFocus();
         // Set spider area
@@ -107,12 +106,28 @@ export default {
           d3.select(`#job-${this.index}`).style("display", "block");
         } else {
           // Show all item descriptions
-          d3.selectAll(".job").style("display", "block");
+          d3.selectAll(".job")
+            .style("display", "block")
+            .style("margin-top", "0px");
           this.scrollToId(`#job-${this.index}`);
           window.scrollBy(
             0,
             -(parseInt(document.getElementById("job-chart").offsetHeight) + 10)
           );
+        }
+      } else {
+        d3.selectAll(".job")
+          .style("display", "block")
+          .transition()
+          .duration(this.transitionDuration)
+          .style("margin-top", "0px");
+        this.changeJobFocus();
+        this.changeAreaFocus();
+        if (this.hasFocus) {
+          this.setChartMargin();
+        } else {
+          d3.select("#job-chart").style("margin-top", "0px");
+          // this.scrollToId(`#job-${this.index}`);
         }
       }
     },
