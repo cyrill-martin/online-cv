@@ -56,7 +56,11 @@ export default {
     },
     changeEduFocus() {
       this.hasFocus = !this.hasFocus;
-      this.$emit("setFocus", this.index);
+      if (this.hasFocus) {
+        this.$emit("setFocus", this.index);
+      } else {
+        this.$emit("setFocus", null);
+      }
     },
     changeAreaFocus() {
       if (this.hasFocus) {
@@ -100,6 +104,12 @@ export default {
       } else {
         this.changeEduFocus();
         this.changeAreaFocus();
+        if (!this.hasFocus) {
+          // Make sure all item descriptions are shown
+          d3.selectAll(".education")
+            .style("display", "block")
+            .style("margin-top", "0px");
+        }
       }
     },
   },

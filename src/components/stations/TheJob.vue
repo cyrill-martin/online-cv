@@ -57,7 +57,11 @@ export default {
     },
     changeJobFocus() {
       this.hasFocus = !this.hasFocus;
-      this.$emit("setFocus", this.index);
+      if (this.hasFocus) {
+        this.$emit("setFocus", this.index);
+      } else {
+        this.$emit("setFocus", null);
+      }
     },
     changeAreaFocus() {
       if (this.hasFocus) {
