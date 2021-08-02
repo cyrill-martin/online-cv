@@ -5,7 +5,7 @@
     :id="`education-${index}`"
     @mouseover="highlightEdu"
     @mouseout="highlightEdu"
-    @click="highlightEduMobile"
+    @touchstart="highlightEduMobile"
   >
     <div class="degree-institution">{{ degree.institution }}</div>
     <div class="degree-degree">{{ degree.degree }}</div>
@@ -97,6 +97,9 @@ export default {
             )
           );
         }
+      } else {
+        this.changeEduFocus();
+        this.changeAreaFocus();
       }
     },
   },

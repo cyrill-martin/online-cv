@@ -230,7 +230,7 @@ export default {
               .style("margin-top", "0px");
           }
         })
-        .on("click", function() {
+        .on("touchstart", function() {
           d3.select(`#${thisType}-chart`).style("margin-top", "0px");
           // Check if already selected
           const hasFocus = d3.select(this).attr("fill-opacity") === "1";
@@ -251,6 +251,10 @@ export default {
             // Show all item descriptions
             d3.selectAll(`.${thisType}`)
               .style("display", "block")
+              .style("margin-top", "0px");
+
+            // Show all item descriptions
+            d3.select("#job-chart")
               .style("margin-top", "0px");
 
             // Emit focused index

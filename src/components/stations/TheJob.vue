@@ -5,7 +5,7 @@
     :id="`job-${index}`"
     @mouseover="highlightJob"
     @mouseout="highlightJob"
-    @click="highlightJobMobile"
+    @touchstart="highlightJobMobile"
   >
     <div class="job-title">{{ job.title }}</div>
     <div class="job-company">
@@ -39,6 +39,7 @@ export default {
   data() {
     return {
       hasFocus: false,
+      marginTop: null,
     };
   },
   watch: {
@@ -69,9 +70,8 @@ export default {
     getMarginTop() {
       const job = document.getElementById(`job-${this.index}`);
       const chart = document.getElementById("job-chart");
-      const jobPos = job.offsetTop - document.body.scrollTop;
       const newChartPos =
-        jobPos - (chart.offsetHeight / 2 - job.offsetHeight / 2);
+        job.offsetTop - (chart.offsetHeight / 2 - job.offsetHeight / 2);
       if (newChartPos > 0) {
         return newChartPos;
       } else {
@@ -116,18 +116,19 @@ export default {
           );
         }
       } else {
-        d3.selectAll(".job")
-          .style("display", "block")
-          .transition()
-          .duration(this.transitionDuration)
-          .style("margin-top", "0px");
         this.changeJobFocus();
         this.changeAreaFocus();
         if (this.hasFocus) {
           this.setChartMargin();
         } else {
-          d3.select("#job-chart").style("margin-top", "0px");
-          // this.scrollToId(`#job-${this.index}`);
+          // Make sure all item descriptions are shown
+          d3.selectAll(".job")
+            .style("display", "block")
+            .style("margin-top", "0px");
+          d3.select("#job-chart")
+            // .transition()
+            // .duration(this.transitionDuration)
+            .style("margin-top", "0px");
         }
       }
     },
