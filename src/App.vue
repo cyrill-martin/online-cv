@@ -113,6 +113,7 @@ export default {
       d3.selectAll(".job-path").attr("fill-opacity", this.areaOpacity);
       d3.selectAll(".education").style("display", "block");
       d3.selectAll(".education-path").attr("fill-opacity", this.areaOpacity);
+      d3.selectAll(".chart").style("margin-top", "0px");
     },
   },
   data() {
