@@ -3,7 +3,6 @@ import { select, selectAll } from "d3-selection";
 import { scaleLinear } from "d3-scale";
 import { arc, lineRadial, curveCardinalClosed } from "d3-shape";
 import { range } from "d3-array";
-
 export default {
   transition,
   select,
@@ -12,5 +11,5 @@ export default {
   arc,
   lineRadial,
   curveCardinalClosed,
-  range,
+  range
 };

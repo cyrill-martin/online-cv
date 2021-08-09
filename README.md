@@ -2,7 +2,7 @@
 
 These are the Vue.js files for the online CV accessible at [cyrill-martin.github.io](https://cyrill-martin.github.io).
 
-The CV content is based on the "cv" data property in ``./src/App.vue``. 
+The CV content is based on the JSON file "myCv" in ``./src``. 
 
 The spider charts are based on the D3.js code written in the "drawD3()" method in ``./src/components/TheChart.vue``.
 
