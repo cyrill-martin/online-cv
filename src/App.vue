@@ -63,10 +63,6 @@ import TheInterests from "./components/TheInterests.vue";
 import d3 from "./d3-importer.js";
 import myCv from "./myCv.json"
 
-// created(): load CV from JSON (!)
-// touch: tablet ???
-// click: mobile ???
-
 export default {
   components: {
     ThePersonalDetails,

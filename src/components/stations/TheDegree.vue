@@ -5,7 +5,8 @@
     :id="`education-${index}`"
     @mouseover="highlightEdu"
     @mouseout="highlightEdu"
-    @touchstart="highlightEduMobile"
+    @touchstart="highlightEduTablet"
+    @click="highlightEduMobile"
   >
     <div class="degree-institution">{{ degree.institution }}</div>
     <div class="degree-degree">{{ degree.degree }}</div>
@@ -76,6 +77,22 @@ export default {
         this.changeAreaFocus();
       }
     },
+    highlightEduTablet() {
+      if (window.innerWidth >= this.mobileWidth) {
+        this.changeEduFocus();
+        this.changeAreaFocus();
+        if (!this.hasFocus) {
+          // Make sure all item descriptions are shown
+          d3.selectAll(".education")
+            .style("display", "block")
+            .style("margin-top", "0px");
+          d3.select("#education-chart")
+            // .transition()
+            // .duration(this.transitionDuration)
+            .style("margin-top", "0px");
+        }
+      }
+    },
     highlightEduMobile() {
       if (window.innerWidth < this.mobileWidth) {
         // Scroll to corresponding section
@@ -100,15 +117,6 @@ export default {
               ) + 10
             )
           );
-        }
-      } else {
-        this.changeEduFocus();
-        this.changeAreaFocus();
-        if (!this.hasFocus) {
-          // Make sure all item descriptions are shown
-          d3.selectAll(".education")
-            .style("display", "block")
-            .style("margin-top", "0px");
         }
       }
     },

@@ -5,8 +5,13 @@
     :id="`job-${index}`"
     @mouseover="highlightJob"
     @mouseout="highlightJob"
-    @touchstart="highlightJobMobile"
+    @touchstart="highlightJobTablet"
+    @click="highlightJobMobile"
   >
+
+  <!-- touch: tablet ???
+  click: mobile ??? -->
+
     <div class="job-title">{{ job.title }}</div>
     <div class="job-company">
       <a :href="job.url" target="_blank">{{ job.company }}</a> · {{ job.type }}
@@ -95,6 +100,24 @@ export default {
         this.setChartMargin();
       }
     },
+    highlightJobTablet() {
+      if (window.innerWidth >= this.mobileWidth) {
+        this.changeJobFocus();
+        this.changeAreaFocus();
+        if (this.hasFocus) {
+          this.setChartMargin();
+        } else {
+          // Make sure all item descriptions are shown
+          d3.selectAll(".job")
+            .style("display", "block")
+            .style("margin-top", "0px");
+          d3.select("#job-chart")
+            // .transition()
+            // .duration(this.transitionDuration)
+            .style("margin-top", "0px");
+        }
+      }
+    },
     highlightJobMobile() {
       if (window.innerWidth < this.mobileWidth) {
         // Scroll to corresponding section
@@ -118,21 +141,6 @@ export default {
             0,
             -(parseInt(document.getElementById("job-chart").offsetHeight) + 10)
           );
-        }
-      } else {
-        this.changeJobFocus();
-        this.changeAreaFocus();
-        if (this.hasFocus) {
-          this.setChartMargin();
-        } else {
-          // Make sure all item descriptions are shown
-          d3.selectAll(".job")
-            .style("display", "block")
-            .style("margin-top", "0px");
-          d3.select("#job-chart")
-            // .transition()
-            // .duration(this.transitionDuration)
-            .style("margin-top", "0px");
         }
       }
     },
