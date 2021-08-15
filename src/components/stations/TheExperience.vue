@@ -5,14 +5,14 @@
     </div>
   </div>
   <div class="row" @mouseout="resetChartMargin">
-    <div class="col-6">
+    <div class="col-5">
       <the-chart
         :chart-data="experience"
         :type="'job'"
         @set-focus="setFocus"
       ></the-chart>
     </div>
-    <div class="col-6">
+    <div class="col-7">
       <the-job
         v-for="(job, index) in experience.job"
         :key="job.title"

@@ -5,14 +5,14 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-6">
+    <div class="col-5">
       <the-chart
         :chart-data="education"
         :type="'education'"
         @set-focus="setFocus"
       ></the-chart>
     </div>
-    <div class="col-6">
+    <div class="col-7">
       <the-degree
         v-for="(degree, index) in education.education"
         :key="index"
