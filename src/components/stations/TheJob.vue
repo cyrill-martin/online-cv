@@ -8,10 +8,6 @@
     @touchstart="highlightJobTablet"
     @click="highlightJobMobile"
   >
-
-  <!-- touch: tablet ???
-  click: mobile ??? -->
-
     <div class="job-title">{{ job.title }}</div>
     <div class="job-company">
       <a :href="job.url" target="_blank">{{ job.company }}</a> · {{ job.type }}

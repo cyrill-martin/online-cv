@@ -2,20 +2,20 @@
   "firstName": "Cyrill",
   "lastName": "Martin",
   "middleName": null,
-  "address": {
-    "street": null,
-    "postalCode": null,
-    "city": null,
-    "country": null
-  },
   "headline": {
     "jobTitle": null,
     "summary": "Data & Information Architect · Developer · Dedicated to interdisciplinary perspectives on information retrieval and knowledge transfer · Skilled in structuring content and data for humans and machines"
   },
   "contact": {
     "eMail": "cyrill.martin@hey.com",
-    "phone": "",
-    "website": "https://cyrill-martin.github.io/"
+    "phone": null,
+    "website": "https://cyrill-martin.github.io/",
+    "address": {
+      "street": null,
+      "postalCode": null,
+      "city": null,
+      "country": null
+    }
   },
   "socialProfile": [
     {

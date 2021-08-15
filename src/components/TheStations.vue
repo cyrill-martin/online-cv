@@ -1,13 +1,10 @@
 <template>
   <section id="sec-job">
-    <the-experience
-      :experience="experience"
-      @remove-edu-focus="removeFocus('edu')"
-    ></the-experience>
+    <the-experience :experience="experience"></the-experience>
   </section>
 
   <section id="sec-education">
-    <the-education :education="education" :clear-focus="focusedEdu"></the-education>
+    <the-education :education="education"></the-education>
   </section>
 </template>
 
@@ -21,18 +18,5 @@ export default {
     TheEducation,
   },
   props: ["experience", "education"],
-  data() {
-    return {
-      focusedJob: null,
-      focusedEdu: false,
-    }
-  },
-  methods: {
-    removeFocus(type) {
-      if (type === "edu") {
-        this.focusedEdu = false;
-      }
-    },
-  },
 };
 </script>
