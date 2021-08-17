@@ -11,7 +11,7 @@
           <a :href="`mailto:${contact.eMail}`">E-Mail</a>
         </span>
         <span
-          v-for="network in socialProfile"
+          v-for="network in socialNetwork"
           :key="network.network"
           class="social-network"
         >
@@ -38,7 +38,7 @@ export default {
     "jobTitle",
     "summary",
     "contact",
-    "socialProfile",
+    "socialNetwork",
   ],
   computed: {
     imageLink() {

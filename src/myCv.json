@@ -6,6 +6,7 @@
     "jobTitle": null,
     "summary": "Data & Information Architect · Developer · Dedicated to interdisciplinary perspectives on information retrieval and knowledge transfer · Skilled in structuring content and data for humans and machines"
   },
+  "image": "photo.png",
   "contact": {
     "eMail": "cyrill.martin@hey.com",
     "phone": null,
@@ -17,7 +18,7 @@
       "country": null
     }
   },
-  "socialProfile": [
+  "socialNetwork": [
     {
       "network": "LinkedIn",
       "url": "https://ch.linkedin.com/in/cyrill-martin-b7177a12b"
@@ -31,9 +32,8 @@
       "url": "https://github.com/cyrill-martin"
     }
   ],
-  "image": "photo.png",
   "experience": {
-    "areas": ["Design", "Management", "Data / Content", "Development"],
+    "areas": ["Design", "Management", "Data & Content", "Development"],
     "job": [
       {
         "title": "Data & Information Architect · Developer",
@@ -55,7 +55,7 @@
           "Jekyll",
           "Docker"
         ],
-        "areaValues": [0.9, 0.9, 1, 1]
+        "areaValues": [0.9, 1, 1, 1]
       },
       {
         "title": "Frontend Developer",
@@ -68,7 +68,7 @@
         },
         "summary": "Developed the user interface and custom data visualizations for a drug discovery project's data exploration website · Developed custom features to group, sort, and share box plots, heat maps, line charts, and spider plots · Integrated data export of explored data · Implemented single sign on user flow",
         "stack": ["Vue.js", "D3.js", "Django", "Docker"],
-        "areaValues": [0.9, 0.1, 1, 1]
+        "areaValues": [0.8, 0.1, 1, 1]
       },
       {
         "title": "Tool Coordinator and Developer",
@@ -89,7 +89,7 @@
           "Jekyll",
           "Docker"
         ],
-        "areaValues": [0.5, 0.15, 1, 1]
+        "areaValues": [0.6, 0.2, 1, 1]
       },
       {
         "title": "Co-Initiator",
@@ -102,7 +102,7 @@
         },
         "summary": "unscrunch was an interdisciplinary digital agency based in Basel with a strong focus on structured data, relevant content, digital transformation, and innovative online solutions",
         "stack": ["D3.js", "Ruby", "Jekyll"],
-        "areaValues": [0.5, 0.8, 1, 0.9]
+        "areaValues": [0.5, 0.9, 1, 0.9]
       },
       {
         "title": "Strategic Competence Lead",
@@ -115,7 +115,7 @@
         },
         "summary": "Developed Karger’s strategic competences in advanced technologies · Established knowledge transfer of complex solutions · Enriched data using machine learning and/or external data · Assessed internal opportunities as well as external partners regarding data science, artificial intelligence, and blockchain",
         "stack": ["SQL", "XPath", "R", "Ruby"],
-        "areaValues": [0, 1, 0.9, 0.6]
+        "areaValues": [0, 1, 1, 0.9]
       },
       {
         "title": "Head of Marketing Online & Databases",
@@ -128,7 +128,7 @@
         },
         "summary": "Improved production and distribution workflows for bibliographic, content, and metadata standards · Managed a team of four staff members, recruited three positions · Enhanced data quality and integrity using external data sources · Established GDPR compliance of direct marketing data",
         "stack": ["SQL", "XML"],
-        "areaValues": [0, 1, 1, 0.4]
+        "areaValues": [0, 1, 1, 0.5]
       },
       {
         "title": "eContent & ePartner",
@@ -141,7 +141,7 @@
         },
         "summary": "Led workflow and data conversion from Karger's own SGML standard to the Journal Article Tag Suite (JATS) XML · Streamlined development and maintenance of all content and metadata standards as well as data distributions",
         "stack": ["SQL", "XML"],
-        "areaValues": [0, 0.3, 1, 0.5]
+        "areaValues": [0, 0.5, 1, 0.5]
       },
       {
         "title": "Scientific Proofreader",
@@ -167,7 +167,7 @@
         },
         "summary": "Conducted requirements engineering and project documentation for bi-temporal database application · Initiated graphical user interface (GUI) prototypes · Organized automated GUI tests · Developed and performed usability tests and training sessions with end users",
         "stack": ["SQL"],
-        "areaValues": [0.6, 0.15, 0.6, 0.1]
+        "areaValues": [0.6, 0.2, 0.6, 0.2]
       },
       {
         "title": "Scientific Associate",
@@ -180,7 +180,7 @@
         },
         "summary": "Planned field work for soil sciences part in interdisciplinary SNF project · Wrote paper based on Master's thesis results (DOI: 10.1016/j.baae.2010.04.006)",
         "stack": ["R"],
-        "areaValues": [0, 0.2, 0.85, 0.2]
+        "areaValues": [0, 0.2, 0.85, 0.3]
       }
     ]
   },
@@ -212,7 +212,7 @@
           "to": "Jan 2009"
         },
         "summary": "Master's thesis published as DOI <a href=\"https://doi.org/10.1016/j.baae.2010.04.006\" target=\"_blank\">10.1016/j.baae.2010.04.006</a>",
-        "areaValues": [1, 0.75, 0.65]
+        "areaValues": [1, 0.9, 0.7]
       },
       {
         "institution": "University of Basel",
@@ -222,7 +222,7 @@
           "to": "Sep 2006"
         },
         "summary": "Major in Environmental Geosciences",
-        "areaValues": [1, 0.3, 0.1]
+        "areaValues": [1, 0.5, 0.3]
       }
     ]
   },

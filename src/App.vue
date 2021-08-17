@@ -12,7 +12,7 @@
           :job-title="cv.headline.jobTitle"
           :summary="cv.headline.summary"
           :contact="cv.contact"
-          :social-profile="cv.socialProfile"
+          :social-network="cv.socialNetwork"
         ></the-personal-details>
       </section>
 
