@@ -242,6 +242,10 @@
     {
       "skill": "Web",
       "stack": ["HTML", "CSS", "Vue.js", "Flask", "Jekyll", "Ruby on Rails"]
+    },
+    {
+      "skill": "DevOps",
+      "stack": ["Git", "Docker"]
     }
   ],
   "languages": [
