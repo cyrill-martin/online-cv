@@ -4,7 +4,7 @@ This repository contains the Vue.js files for my online CV accessible at [cyrill
 
 The CV's content as well as the categories and values for the shown spider charts are maintained in the JSON file "myCv.json" in ``./src``. 
 
-The charts are based on the D3.js code written in the "drawD3()" method in ``./src/components/TheChart.vue``.
+The charts are based on the D3.js code written in the "drawD3()" method in ``./src/components/stations/TheChart.vue``.
 
 ## Project setup
 ```
