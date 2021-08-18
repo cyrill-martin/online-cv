@@ -15,7 +15,7 @@ export default {
     "scrollToId",
   ],
   mounted() {
-    // Draw the box plots
+    // Draw the spider charts
     this.drawD3(this.chartData);
   },
   methods: {
